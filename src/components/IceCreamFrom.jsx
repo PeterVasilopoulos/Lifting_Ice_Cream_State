@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 
-const IceCreamFrom = () => {
+const IceCreamFrom = (props) => {
     const [flavor, setFlavor] = useState("");
     const [quantity, setQuantity] = useState(1);
     const [chocoChip, setChocoChip] = useState(true);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+        const newIceCream = {flavor, quantity, chocoChip, isUrgen: false};
+        props.onNewOrder(newIceCream);
     }
 
     return (
@@ -36,7 +37,7 @@ const IceCreamFrom = () => {
 
                     {/* Chocolate Chips */}
                     <div>
-                        <label>Chocolate Chips </label>
+                        <label>Chocolate Chips: </label>
                         <input type="checkbox" name='chocoChip' checked={chocoChip} onChange={(e) => setChocoChip(e.target.checked)}/>
                     </div>
 
